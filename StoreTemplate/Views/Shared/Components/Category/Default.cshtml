@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Category>
+
+
+<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    @foreach (var category in Model)
+    {
+        <a class="dropdown-item" href="#">@category.Name</a>
+    }
+</div>

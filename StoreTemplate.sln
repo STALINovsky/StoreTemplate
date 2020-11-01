@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreTemplate", "PetParty\StoreTemplate.csproj", "{8083C43E-582E-4CBA-A4F9-7FEB846A95C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreTemplateCore", "TemplateStoreCore\StoreTemplateCore.csproj", "{6BED1960-F6EA-4CD5-AA92-F53BD1BFD7BB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "StoreTemolateInfrastructure\Infrastructure.csproj", "{49467AFD-4E1A-436D-8F58-ECAE233BAB14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreTemplate", "StoreTemplate\StoreTemplate.csproj", "{3C3913D3-DB43-4F28-93E3-B1AED1C320A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8083C43E-582E-4CBA-A4F9-7FEB846A95C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8083C43E-582E-4CBA-A4F9-7FEB846A95C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8083C43E-582E-4CBA-A4F9-7FEB846A95C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8083C43E-582E-4CBA-A4F9-7FEB846A95C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BED1960-F6EA-4CD5-AA92-F53BD1BFD7BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BED1960-F6EA-4CD5-AA92-F53BD1BFD7BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BED1960-F6EA-4CD5-AA92-F53BD1BFD7BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BED1960-F6EA-4CD5-AA92-F53BD1BFD7BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49467AFD-4E1A-436D-8F58-ECAE233BAB14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49467AFD-4E1A-436D-8F58-ECAE233BAB14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49467AFD-4E1A-436D-8F58-ECAE233BAB14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49467AFD-4E1A-436D-8F58-ECAE233BAB14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C3913D3-DB43-4F28-93E3-B1AED1C320A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C3913D3-DB43-4F28-93E3-B1AED1C320A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C3913D3-DB43-4F28-93E3-B1AED1C320A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C3913D3-DB43-4F28-93E3-B1AED1C320A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
