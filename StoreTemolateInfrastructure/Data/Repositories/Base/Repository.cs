@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Infrastructure.Specifications.Base;
 using Microsoft.EntityFrameworkCore;
 using StoreTemplateCore.Entities.Base;
-using StoreTemplateCore.Repositories;
-using StoreTemplateCore.Specifications.Base;
+using Infrastructure.Data.Repositories.Base;
 
 namespace Infrastructure.Data.Repositories.Base
 {

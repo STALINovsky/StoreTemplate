@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Data.Repositories.Base;
+using Infrastructure.Specifications.CategorySpecifications;
+using Infrastructure.Specifications.CategorySpecifications.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Infrastructure.Specifications.Base;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Repositories;
-using StoreTemplateCore.Specifications.Base;
-using StoreTemplateCore.Specifications.CategorySpecifications;
-using StoreTemplateCore.Specifications.CategorySpecifications.Extensions;
+
 
 namespace StoreTemplate.Components
 {

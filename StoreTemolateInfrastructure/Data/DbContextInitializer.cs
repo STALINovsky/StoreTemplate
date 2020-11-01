@@ -45,7 +45,7 @@ namespace Infrastructure.Data
                 new Category() { Name = "Pc accessories",  }, // 1
                 new Category() { Name = "Laptops", }, // 2
                 new Category() {Name = "Smart" }, // 3 
-                new Category() { Name = "Audio" }, // 4
+                new Category() { Name = "Audio", }, // 4
                 new Category() {Name = "Games" }, // 5
             };
 
@@ -56,7 +56,7 @@ namespace Infrastructure.Data
         public static async Task SeedProductsAsync(DbContext context)
         {
             var products = new Product[]
-            {   
+            {
                 new Product {
                     Name = "GeForce 4080ti",
                     CategoryId = 1,

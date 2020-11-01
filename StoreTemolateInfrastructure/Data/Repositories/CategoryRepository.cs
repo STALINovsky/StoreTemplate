@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.Data.Repositories.Base;
+using Infrastructure.Specifications.CategorySpecifications;
 using Microsoft.EntityFrameworkCore;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Repositories;
-using StoreTemplateCore.Specifications;
-using StoreTemplateCore.Specifications.Base;
-using StoreTemplateCore.Specifications.CategorySpecifications;
+using Infrastructure.Specifications;
+using Infrastructure.Specifications.Base;
+using ICategoryRepository = Infrastructure.Data.Repositories.Base.ICategoryRepository;
 
 namespace Infrastructure.Data.Repositories
 {
@@ -23,16 +23,18 @@ namespace Infrastructure.Data.Repositories
         
 
 
-        public async Task<IReadOnlyList<Product>> getAllProductsByCategoryId(int id, int take = 0, int skip = 0)
+        public async Task<IReadOnlyList<Product>> GetAllProductsByCategoryId(int id, int take = 0, int skip = 0)
         {
-            var spec = new CategoryWithProductSpecification(id);
+            var spec = new CategoryWithProductsSpecification(id);
             return (await GetAsync(spec)).FirstOrDefault()?.Products;
         }
 
-        public async Task<IReadOnlyList<Product>> getAllProductsByCategoryName(string name, int take = 0, int skip = 0)
+        public async Task<IReadOnlyList<Product>> GetAllProductsByCategoryName(string name, int take = 0, int skip = 0)
         {
-            var spec = new CategoryWithProductSpecification(name);
-            return (await GetAsync(spec)).FirstOrDefault()?.Products;
+            var spec = new CategoryWithProductsSpecification(name);
+            var category = (await GetAsync(spec)).First();
+
+            return category.Products;
         }
     }
 }

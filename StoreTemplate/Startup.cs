@@ -1,13 +1,14 @@
 using System.Threading.Tasks;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
+using Infrastructure.Data.Repositories.Base;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using StoreTemplateCore.Repositories;
+
 
 namespace StoreTemplate
 {

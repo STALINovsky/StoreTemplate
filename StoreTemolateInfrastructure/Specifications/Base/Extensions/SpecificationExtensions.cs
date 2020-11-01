@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace StoreTemplateCore.Specifications.Base.Extensions
+
+namespace Infrastructure.Specifications.Base.Extensions
 {
     public static class SpecificationExtensions
     {

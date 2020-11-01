@@ -6,12 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.Data.Repositories;
 using Infrastructure.Data;
+using Infrastructure.Data.Repositories.Base;
+using Infrastructure.Specifications.ProductSpecifications;
+using Infrastructure.Specifications.ProductSpecifications.Extensions;
+using Microsoft.EntityFrameworkCore;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Repositories;
-using StoreTemplateCore.Specifications.Base;
-using StoreTemplateCore.Specifications.Base.Extensions;
-using StoreTemplateCore.Specifications.ProductSpecifications;
-using StoreTemplateCore.Specifications.ProductSpecifications.Extensions;
+using Infrastructure.Specifications.Base;
+using Infrastructure.Specifications.Base.Extensions;
 
 namespace StoreTemplate.Controllers
 {
@@ -30,9 +31,9 @@ namespace StoreTemplate.Controllers
         public async Task<IActionResult> Index()
         {
             var spec = new ProductSpecification().AddSortingByStars().AddPagination(TopProductCount);
-            var topOfProducts = await ProductRepository.GetAsync(spec);
-
-            return View(topOfProducts);
+            var products = await ProductRepository.GetAsync(spec);
+            
+            return View(products);
         }
 
 

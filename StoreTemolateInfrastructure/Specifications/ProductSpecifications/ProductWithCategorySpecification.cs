@@ -1,7 +1,4 @@
-﻿using StoreTemplateCore.Entities;
-using StoreTemplateCore.Specifications.Base;
-
-namespace StoreTemplateCore.Specifications.ProductSpecifications
+﻿namespace Infrastructure.Specifications.ProductSpecifications
 {
     public class ProductWithCategorySpecification : ProductSpecification
     {

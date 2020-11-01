@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Specifications.Base;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Specifications.Base;
 
-namespace StoreTemplateCore.Repositories
+namespace Infrastructure.Data.Repositories.Base
 {
     public interface IProductRepository : IRepository<Product>
     {

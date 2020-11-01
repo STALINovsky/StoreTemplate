@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
+using Infrastructure.Specifications.Base;
 
-namespace StoreTemplateCore.Specifications.Base
+namespace Infrastructure.Specifications.Base
 {
     public abstract class Specification<T> : ISpecification<T>
     {
@@ -37,12 +37,12 @@ namespace StoreTemplateCore.Specifications.Base
             OrderByDescendingExpressions.Add(expression);
         }
 
-        public virtual void AddInclude(Expression<Func<T, object>> includeExpression)
+        public void AddInclude(Expression<Func<T, object>> includeExpression)
         {
             Includes.Add(includeExpression);
         }
 
-        public virtual void AddInclude(string includeString)
+        public void AddInclude(string includeString)
         {
             IncludeStrings.Add(includeString);
         }

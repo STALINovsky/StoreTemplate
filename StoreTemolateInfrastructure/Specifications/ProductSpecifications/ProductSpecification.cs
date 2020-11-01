@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
+using Infrastructure.Specifications.Base;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Specifications.Base;
 
-namespace StoreTemplateCore.Specifications.ProductSpecifications
+namespace Infrastructure.Specifications.ProductSpecifications
 {
     public class ProductSpecification : Specification<Product>
     {

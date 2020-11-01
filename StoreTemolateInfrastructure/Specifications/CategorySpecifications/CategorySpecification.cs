@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
+using Infrastructure.Specifications.Base;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Specifications.Base;
 
-namespace StoreTemplateCore.Specifications.CategorySpecifications
+namespace Infrastructure.Specifications.CategorySpecifications
 {
     public class CategorySpecification : Specification<Category>
     {

@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using Infrastructure.Specifications.Base;
 using Microsoft.EntityFrameworkCore;
 using StoreTemplateCore.Entities.Base;
-using StoreTemplateCore.Specifications.Base;
+
 
 namespace Infrastructure.Data.Repositories
 {
@@ -15,10 +16,9 @@ namespace Infrastructure.Data.Repositories
 			if (specification.Criteria != null) query = query.Where(specification.Criteria);
 			
             //
-			specification.Includes?.Aggregate(query,
-				(current, include) => current.Include(include));
+            query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
 
-			specification.IncludeStrings?.Aggregate(query,
+            specification.IncludeStrings.Aggregate(query,
 				(current, include) => current.Include(include));
 
 			// add Ordering

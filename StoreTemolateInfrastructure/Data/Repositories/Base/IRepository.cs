@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Infrastructure.Specifications.Base;
 using StoreTemplateCore.Entities.Base;
-using StoreTemplateCore.Specifications.Base;
 
-namespace StoreTemplateCore.Repositories
+namespace Infrastructure.Data.Repositories.Base
 {
     public interface IRepository<T> where T : Entity
     {

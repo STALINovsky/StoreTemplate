@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace StoreTemplateCore.Specifications.Base
+namespace Infrastructure.Specifications.Base
 {
     public interface ISpecification<T>
     {

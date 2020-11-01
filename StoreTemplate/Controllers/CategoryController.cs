@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Data.Repositories.Base;
 using Microsoft.AspNetCore.Mvc;
-using StoreTemplateCore.Repositories;
 
 namespace StoreTemplate.Controllers
 {
@@ -18,10 +18,15 @@ namespace StoreTemplate.Controllers
         }
 
         [Route("{categoryName}/{page:int?}")]
-        public IActionResult Category(string categoryName, int page = 1)
+        public async Task<IActionResult> Category(string categoryName, int page = 1)
         {
-            
-            return View();
+            //int skippedProductsCount = ProductsPerPage * (page - 1);
+            //var category = new CategoryWithProductsSpecification(categoryName)
+            //    .AddPagination(ProductsPerPage,skippedProductsCount);
+
+            var categoryProducts = await Repository.GetAllProductsByCategoryName(categoryName, ProductsPerPage);
+
+            return View(categoryProducts);
         }
     }
 }

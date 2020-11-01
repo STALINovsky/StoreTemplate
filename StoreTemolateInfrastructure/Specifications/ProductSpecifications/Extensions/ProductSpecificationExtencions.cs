@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using Infrastructure.Specifications.Base;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Specifications.Base;
 
-namespace StoreTemplateCore.Specifications.ProductSpecifications.Extensions
+namespace Infrastructure.Specifications.ProductSpecifications.Extensions
 {
     public static class ProductSpecificationExtensions
     {

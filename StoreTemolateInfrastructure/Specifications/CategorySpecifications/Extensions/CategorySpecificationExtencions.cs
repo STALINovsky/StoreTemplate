@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Infrastructure.Specifications.Base;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Specifications.Base;
 
-namespace StoreTemplateCore.Specifications.CategorySpecifications.Extensions
+namespace Infrastructure.Specifications.CategorySpecifications.Extensions
 {
     public static class CategorySpecificationExtensions
     {

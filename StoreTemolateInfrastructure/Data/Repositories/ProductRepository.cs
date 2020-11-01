@@ -3,12 +3,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Infrastructure.Data.Repositories.Base;
+using Infrastructure.Specifications.Base;
+using Infrastructure.Specifications.ProductSpecifications;
 using Microsoft.EntityFrameworkCore;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Repositories;
-using StoreTemplateCore.Specifications;
-using StoreTemplateCore.Specifications.Base;
-using StoreTemplateCore.Specifications.ProductSpecifications;
+using Infrastructure.Specifications;
+using IProductRepository = Infrastructure.Data.Repositories.Base.IProductRepository;
 
 namespace Infrastructure.Data.Repositories
 {
@@ -18,8 +18,6 @@ namespace Infrastructure.Data.Repositories
         {
 
         }
-
-        private new StoreDbContext Context => (StoreDbContext)base.Context;
 
         public async Task<Product> GetProductByIdWithCategoryAsync(int id)
         {
