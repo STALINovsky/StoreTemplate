@@ -18,8 +18,8 @@ namespace StoreTemplateCore.Specifications.Base
 
         public void AddOrdering(Expression<Func<T, object>> expression);
         public void AddDescendingOrdering(Expression<Func<T, object>> expression);
-        protected void AddInclude(Expression<Func<T, object>> includeExpression);
-        protected void AddInclude(string includeString);
+        public void AddInclude(Expression<Func<T, object>> includeExpression);
+        public void AddInclude(string includeString);
 
     }
 }

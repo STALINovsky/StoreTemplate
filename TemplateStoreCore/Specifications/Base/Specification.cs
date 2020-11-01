@@ -37,11 +37,12 @@ namespace StoreTemplateCore.Specifications.Base
             OrderByDescendingExpressions.Add(expression);
         }
 
-        protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)
+        public virtual void AddInclude(Expression<Func<T, object>> includeExpression)
         {
             Includes.Add(includeExpression);
         }
-        protected virtual void AddInclude(string includeString)
+
+        public virtual void AddInclude(string includeString)
         {
             IncludeStrings.Add(includeString);
         }
