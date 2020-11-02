@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using StoreTemplateCore.Entities.Base;
 
 namespace StoreTemplateCore.Entities
@@ -15,8 +16,13 @@ namespace StoreTemplateCore.Entities
 
         public double? Stars { get; set; }
 
+        // n - 1 relationship
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
+
+
+        // 1 - n relationship
+        public List<Tag> Tags { get; set; }
 
     }
 }

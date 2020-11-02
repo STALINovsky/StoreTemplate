@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using StoreTemplateCore.Entities;
 using Infrastructure.Specifications;
 using Infrastructure.Specifications.Base;
-using ICategoryRepository = Infrastructure.Data.Repositories.Base.ICategoryRepository;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Infrastructure.Data.Repositories
 {
@@ -17,24 +17,27 @@ namespace Infrastructure.Data.Repositories
     {
         public CategoryRepository(StoreDbContext context) : base(context)
         {
+            Categories = context.Categories;
 
         }
 
-        
-
+        private DbSet<Category> Categories { get; set; }
 
         public async Task<IReadOnlyList<Product>> GetAllProductsByCategoryId(int id, int take = 0, int skip = 0)
         {
-            var spec = new CategoryWithProductsSpecification(id);
+            var spec = new CategorySpecification(id);
             return (await GetAsync(spec)).FirstOrDefault()?.Products;
         }
 
-        public async Task<IReadOnlyList<Product>> GetAllProductsByCategoryName(string name, int take = 0, int skip = 0)
+        public async Task<IReadOnlyList<Product>> GetProductsOfCategory
+            (ISpecification<Category> categorySpecification, ISpecification<Product> productsSpecification)
         {
-            var spec = new CategoryWithProductsSpecification(name);
-            var category = (await GetAsync(spec)).First();
+            var category = await ApplySpecification(categorySpecification).FirstAsync();
 
-            return category.Products;
+            var productsCategoryQuery = Context.Entry(category).Collection(cat => cat.Products).Query();
+            var productsOfCategory = await SpecificationEvaluator<Product>.ApplySpecification
+                (productsCategoryQuery, productsSpecification).ToListAsync();
+            return productsOfCategory;
         }
     }
 }

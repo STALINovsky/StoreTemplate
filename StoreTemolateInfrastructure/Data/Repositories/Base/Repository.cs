@@ -69,9 +69,9 @@ namespace Infrastructure.Data.Repositories.Base
         }
 
 
-        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+        protected IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
-            return SpecificationEvaluator<T>.GetQuery(Context.Set<T>().AsQueryable(), spec);
+            return SpecificationEvaluator<T>.ApplySpecification(Context.Set<T>().AsQueryable(), spec);
         }
 
         public async Task<T> GetByIdAsync(int id)

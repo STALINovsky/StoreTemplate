@@ -30,7 +30,7 @@ namespace StoreTemplate.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var spec = new ProductSpecification().AddSortingByStars().AddPagination(TopProductCount);
+            var spec = new ProductSpecification().IncludeTags().AddSortingByStars().AddPagination(TopProductCount);
             var products = await ProductRepository.GetAsync(spec);
             
             return View(products);

@@ -16,5 +16,17 @@ namespace Infrastructure.Specifications.ProductSpecifications.Extensions
             specification.AddDescendingOrdering(product => product.Name);
             return specification;
         }
+
+        public static ISpecification<Product> IncludeCategory(this ISpecification<Product> specification)
+        {
+            specification.AddInclude(product => product.Category);
+            return specification;
+        }
+
+        public static ISpecification<Product> IncludeTags(this ISpecification<Product> specification)
+        {
+            specification.AddInclude(product => product.Tags);
+            return specification;
+        }
     }
 }

@@ -9,5 +9,8 @@ namespace Infrastructure.Specifications.CategorySpecifications
     {
         public CategorySpecification() : base() { }
         public CategorySpecification(Expression<Func<Category,bool>> expression) : base(expression) { }
+
+        public CategorySpecification(string name):base(category => category.Name.ToLower().Contains(name.ToLower())) { }
+        public CategorySpecification(int id) : base(category => category.Id == id){ }
     }
 }

@@ -7,8 +7,9 @@ using StoreTemplateCore.Entities.Base;
 namespace Infrastructure.Data.Repositories
 {
     internal static class SpecificationEvaluator<T> where T : Entity
-	{
-		public static IQueryable<T> GetQuery(IQueryable<T> baseQuery, ISpecification<T> specification)
+    {
+
+        public static IQueryable<T> ApplySpecification(IQueryable<T> baseQuery, ISpecification<T> specification)
 		{
 			var query = baseQuery;
 

@@ -8,7 +8,7 @@ using Infrastructure.Specifications.ProductSpecifications;
 using Microsoft.EntityFrameworkCore;
 using StoreTemplateCore.Entities;
 using Infrastructure.Specifications;
-using IProductRepository = Infrastructure.Data.Repositories.Base.IProductRepository;
+using Infrastructure.Specifications.ProductSpecifications.Extensions;
 
 namespace Infrastructure.Data.Repositories
 {
@@ -21,13 +21,13 @@ namespace Infrastructure.Data.Repositories
 
         public async Task<Product> GetProductByIdWithCategoryAsync(int id)
         {
-            var spec = new ProductWithCategorySpecification(id);
+            var spec = new ProductSpecification(id).IncludeCategory();
             return (await GetAsync(spec)).FirstOrDefault();
         }
 
         public async Task<IReadOnlyList<Product>> GetProductByNameAsync(string name)
         {
-            var spec = new ProductWithCategorySpecification(name);
+            var spec = new ProductSpecification(name);
             return await GetAsync(spec);
         }
 
