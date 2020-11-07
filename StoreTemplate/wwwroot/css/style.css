@@ -1,0 +1,155 @@
+﻿* {
+    box-sizing: border-box;
+    margin:0px;
+    padding:0px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    color: #222222;
+}
+
+.clearfix:after {
+    content: '';
+    display: table;
+    width: 100%;
+    clear: both;
+}
+a {
+    text-decoration: none;
+}
+header {
+    background-color:#343a40;
+    min-height:200px;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+nav {
+    float: left;
+    margin-top: 45px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.0015);
+    border-radius: 2px;
+    color: #595959;
+    font-size: 16px;
+    line-height: 24px;
+}
+.active
+{
+    color:#fff;
+    transition-delay:1s;
+}
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+/* header */
+.logo{
+    position:absolute;
+    color:#fff;
+}
+.menu {
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+    .menu li {
+        float: left;
+        display: block;
+        margin-right: 41px;
+    }
+
+    .menu a {
+        color: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+.person {
+    height: 20px;
+    width: 20px;
+    color: #fff;
+    display: inline-block;
+}
+
+.cart {
+    height: 20px;
+    width: 20px;
+    color: #fff;
+    display: inline-block;
+}
+
+/* cards */
+.cards {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding-bottom: 80px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 30px;
+    flex-basis: 31%;
+    text-decoration: none;
+    color: #000;
+}
+
+.card-image {
+    width: 384px;
+    height: 300px;
+    object-fit: cover;
+}
+.card-block {
+    align-items: center;
+    padding: 10px;
+    min-height: 140px;
+}
+    .card-btn {
+        color: #007bff;
+        display:block;
+        margin:auto;
+        padding-bottom:5px;
+    }
+    .card-block__title
+    {
+        padding-bottom:6px;
+    }
+    .card-block__text
+    {
+        padding-bottom:6px;
+    }
+/* /cards */
+.main {
+    margin-top: 50px;
+    min-height: 742px;
+}
+
+
+.footer {
+    background-color: #5E5E65;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+    font-size: 14px;
+}

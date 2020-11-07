@@ -6,8 +6,11 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-body">
-                    <input type="hidden" />
-                    <form asp-controller="Account" asp-action="LogIn" method="post">
+                    <div asp-validation-summary="All" class="text-danger">
+
+                    </div>
+                    <form asp-controller="Account" asp-action="LogIn" method="post" >
+                        
                         <input type="hidden" asp-for="ReturnUrl"/>
                         <div class="form-group">
                             <label asp-for="Name"></label>
@@ -19,7 +22,9 @@
                             <div><span asp-validation-for="Password" class="text-danger"></span></div>
                             <input asp-for="Password" class="form-control">
                         </div>
-                        <button class="btn btn-primary" type="submit">login</button>
+                        <div class="text-center">
+                            <button class="btn btn-primary" type="submit">login</button>
+                        </div>
                     </form>
                 </div>
             </div>
