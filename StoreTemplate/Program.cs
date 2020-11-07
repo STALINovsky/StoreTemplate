@@ -1,10 +1,14 @@
 using System;
 using System.Threading.Tasks;
 using Infrastructure.Data;
+using Infrastructure.Data.Contexts;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using StoreTemplateCore.Identity;
 
 namespace StoreTemplate
 {
@@ -32,16 +36,16 @@ namespace StoreTemplate
             var serviceProvider = scope.ServiceProvider;
             var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
 
-            try
-            {
-                var dbContext = serviceProvider.GetRequiredService<StoreDbContext>();
-                await DbContextInitializer.TryInitContext(dbContext,loggerFactory.CreateLogger("DbInitialization"));
-            }
-            catch (Exception e)
-            {
-                var logger = loggerFactory.CreateLogger("Program");
-                logger.LogError(e,"An init DB");
-            }
+
+            var dbContext = serviceProvider.GetRequiredService<StoreDbContext>();
+            await DbContextInitializer.TryInitEntities(dbContext, loggerFactory.CreateLogger("DbInitialization"));
+
+            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            await DbContextInitializer.InitIdentity(userManager, roleManager, configuration);
+
         }
     }
 }

@@ -5,8 +5,8 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Infrastructure.Specifications.Base;
 using Microsoft.EntityFrameworkCore;
-using StoreTemplateCore.Entities.Base;
 using Infrastructure.Data.Repositories.Base;
+using StoreTemplateCore.Entities.Base;
 
 namespace Infrastructure.Data.Repositories.Base
 {
@@ -71,7 +71,7 @@ namespace Infrastructure.Data.Repositories.Base
 
         protected IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
-            return SpecificationEvaluator<T>.ApplySpecification(Context.Set<T>().AsQueryable(), spec);
+            return SpecificationEvaluator.ApplySpecification(Context.Set<T>().AsQueryable(), spec);
         }
 
         public async Task<T> GetByIdAsync(int id)

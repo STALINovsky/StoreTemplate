@@ -1,9 +1,11 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<StoreTemplateCore.Entities.Category>
 
 
 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
     @foreach (var category in Model)
     {
-        <a class="dropdown-item" href="#">@category.Name</a>
+        <a class="dropdown-item" asp-controller="Category" asp-action="Index" asp-route-categoryName="@category.Name" >
+            @category.Name
+        </a>
     }
 </div>

@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using StoreTemplateCore.Entities;
+using StoreTemplateCore.Identity;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Contexts
 {
-    public sealed class StoreDbContext : DbContext
+    public sealed class StoreDbContext : IdentityDbContext<User>
     {
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
         {
@@ -11,9 +13,7 @@ namespace Infrastructure.Data
         }
 
         public DbSet<Product> Products { get; set; }
-
         public DbSet<Category> Categories { get; set; }
-
         public DbSet<Tag> Tags { get; set; }
     }
 }

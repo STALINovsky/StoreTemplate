@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Infrastructure.Data.Contexts;
 using Infrastructure.Data.Repositories.Base;
 using Infrastructure.Specifications.Base;
 using Infrastructure.Specifications.ProductSpecifications;
 using Microsoft.EntityFrameworkCore;
-using StoreTemplateCore.Entities;
 using Infrastructure.Specifications;
-using Infrastructure.Specifications.ProductSpecifications.Extensions;
+using StoreTemplateCore.Entities;
 
 namespace Infrastructure.Data.Repositories
 {

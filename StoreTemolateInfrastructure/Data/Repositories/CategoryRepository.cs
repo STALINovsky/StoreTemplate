@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Data.Contexts;
 using Infrastructure.Data.Repositories.Base;
 using Infrastructure.Specifications.CategorySpecifications;
 using Microsoft.EntityFrameworkCore;
-using StoreTemplateCore.Entities;
 using Infrastructure.Specifications;
 using Infrastructure.Specifications.Base;
 using Microsoft.EntityFrameworkCore.Internal;
+using StoreTemplateCore.Entities;
 
 namespace Infrastructure.Data.Repositories
 {
@@ -18,25 +19,20 @@ namespace Infrastructure.Data.Repositories
         public CategoryRepository(StoreDbContext context) : base(context)
         {
             Categories = context.Categories;
-
         }
 
         private DbSet<Category> Categories { get; set; }
 
-        public async Task<IReadOnlyList<Product>> GetAllProductsByCategoryId(int id, int take = 0, int skip = 0)
-        {
-            var spec = new CategorySpecification(id);
-            return (await GetAsync(spec)).FirstOrDefault()?.Products;
-        }
-
-        public async Task<IReadOnlyList<Product>> GetProductsOfCategory
+        public async Task<IReadOnlyList<Product>> GetProductsOfCategoryAsync
             (ISpecification<Category> categorySpecification, ISpecification<Product> productsSpecification)
         {
             var category = await ApplySpecification(categorySpecification).FirstAsync();
 
-            var productsCategoryQuery = Context.Entry(category).Collection(cat => cat.Products).Query();
-            var productsOfCategory = await SpecificationEvaluator<Product>.ApplySpecification
-                (productsCategoryQuery, productsSpecification).ToListAsync();
+            var productsQuery = Context.Entry(category).Collection(cat => cat.Products).Query();
+            
+            var productsOfCategory = await SpecificationEvaluator.ApplySpecification
+                (productsQuery, productsSpecification).ToListAsync();
+
             return productsOfCategory;
         }
     }

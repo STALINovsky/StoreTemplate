@@ -4,10 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.Data.Repositories.Base;
 using Infrastructure.Specifications.CategorySpecifications;
-using Infrastructure.Specifications.CategorySpecifications.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.Specifications.Base;
-using StoreTemplateCore.Entities;
 
 
 namespace StoreTemplate.Components
@@ -23,8 +21,8 @@ namespace StoreTemplate.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var spec = new CategorySpecification().AddSortingByName();
-            return View( await Repository.GetAsync(spec));
+            var spec = new CategorySpecification().SortByName();
+            return View(await Repository.GetAsync(spec));
         }
     }
 }

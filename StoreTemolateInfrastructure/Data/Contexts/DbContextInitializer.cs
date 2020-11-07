@@ -1,23 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using StoreTemplate.Constants;
 using StoreTemplateCore.Entities;
 using StoreTemplateCore.Entities.Base;
+using StoreTemplateCore.Identity;
 
-namespace Infrastructure.Data
+
+namespace Infrastructure.Data.Contexts
 {
     public static class DbContextInitializer
     {
-        public static async Task<bool> TryInitContext(DbContext context, ILogger logger)
+        public static async Task<bool> TryInitEntities(DbContext context, ILogger logger)
         {
             try
             {
                 await SeedCategoriesAsync(context);
-
                 await SeedProductsAsync(context);
+
             }
             catch (Exception exception)
             {
@@ -75,6 +80,7 @@ namespace Infrastructure.Data
                     Name = "GeForce 4080ti",
                     CategoryId = 1,
                     Description = "Amazing GeForce",
+                    ImagePath = @"Images/Product/Gtx.jpg",
                     Price = 999.99m,
                     Tags = new List<Tag>()
                     {
@@ -86,6 +92,7 @@ namespace Infrastructure.Data
                     Name = "GeForce 5080ti",
                     CategoryId = 1,
                     Description = "Amazing GeForce",
+                    ImagePath = @"Images/Product/Gtx.jpg",
                     Price = 1999.99m,
                     Tags = new List<Tag>()
                     {
@@ -97,6 +104,7 @@ namespace Infrastructure.Data
                     Name = "Macbook pro",
                     CategoryId = 2,
                     Description = "Professional mac",
+                    ImagePath = @"Images/Product/Mac-book.png",
                     Price = 999.99m,
                     Tags = new List<Tag>()
                     {
@@ -109,6 +117,7 @@ namespace Infrastructure.Data
                     CategoryId = 2,
                     Description = "Professional mac",
                     Price = 1999.99m,
+                    ImagePath = @"Images/Product/Mac-book.png",
                     Tags = new List<Tag>()
                     {
                         new Tag() { Name = "HiTech" },
@@ -120,6 +129,7 @@ namespace Infrastructure.Data
                     CategoryId = 3,
                     Description = "Amazing phone",
                     Price = 999.99m,
+                    ImagePath = @"Images/Product/Iphone.jpg",
                     Tags = new List<Tag>()
                     {
                         new Tag() { Name = "Phone" },
@@ -131,6 +141,7 @@ namespace Infrastructure.Data
                     CategoryId = 3,
                     Description = "Amazing phone",
                     Price = 1999.99m,
+                    ImagePath = @"Images/Product/Iphone.jpg",
                     Tags = new List<Tag>()
                     {
                         new Tag() { Name = "Phone" },
@@ -142,6 +153,7 @@ namespace Infrastructure.Data
                     CategoryId = 4,
                     Description = "Amazing Audio",
                     Price = 999.99m,
+                    ImagePath = @"Images/Product/AirPods.jpg",
                     Tags = new List<Tag>()
                     {
                         new Tag() { Name = "Electronics" },
@@ -153,6 +165,7 @@ namespace Infrastructure.Data
                     CategoryId = 4,
                     Description = "Amazing Audio",
                     Price = 1999.99m,
+                    ImagePath = @"Images/Product/AirPods.jpg",
                     Tags = new List<Tag>()
                     {
                         new Tag() { Name = "HiTech" },
@@ -164,6 +177,7 @@ namespace Infrastructure.Data
                     CategoryId = 5,
                     Description = "good game",
                     Price = 999.99m,
+                    ImagePath = @"Images/Product/Witcher.jpg",
                     Tags = new List<Tag>()
                     {
                         new Tag() { Name = "Gaming" },
@@ -174,6 +188,7 @@ namespace Infrastructure.Data
                     CategoryId = 5,
                     Description = "Amazing game",
                     Price = 1999.99m,
+                    ImagePath = @"Images/Product/Witcher.jpg",
                     Tags = new List<Tag>()
                     {
                         new Tag() { Name = "Gaming" },
@@ -185,5 +200,35 @@ namespace Infrastructure.Data
             await SeedAsync(context, products);
         }
 
+        public static async Task InitIdentity
+            (UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        {
+            await EnsureRoleCreating(IdentityRoleConstants.AdminRoleName, roleManager);
+            await EnsureRoleCreating(IdentityRoleConstants.ManagerRoleName, roleManager);
+            await EnsureRoleCreating(IdentityRoleConstants.VisitorRoleName, roleManager);
+
+            var adminAccountSection = configuration.GetSection("AdminAccount");
+            var adminEmail = adminAccountSection["AdminEmail"];
+            var adminPassword = adminAccountSection["AdminPassword"];
+
+            if (await userManager.FindByNameAsync(adminEmail) == null)
+            {
+                var admin = new User() {Email = adminEmail, UserName = "Admin"};
+                var result = await userManager.CreateAsync(admin, adminPassword);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(admin, "Admin");
+                    await userManager.AddToRoleAsync(admin, "Manager");
+                }
+            }
+        }
+
+        private static async Task EnsureRoleCreating(string roleName, RoleManager<IdentityRole> roleManager)
+        {
+            if (await roleManager.FindByNameAsync(roleName) == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole(roleName));
+            }
+        }
     }
 }

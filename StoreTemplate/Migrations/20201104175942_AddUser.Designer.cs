@@ -4,14 +4,16 @@ using Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace StoreTemplate.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201104175942_AddUser")]
+    partial class AddUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,7 +152,7 @@ namespace StoreTemplate.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("StoreTemplateCore.Entities.Category", b =>
+            modelBuilder.Entity("StoreTemplateCore.Entities.Index", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -182,6 +184,9 @@ namespace StoreTemplate.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -345,7 +350,7 @@ namespace StoreTemplate.Migrations
 
             modelBuilder.Entity("StoreTemplateCore.Entities.Product", b =>
                 {
-                    b.HasOne("StoreTemplateCore.Entities.Category", "Category")
+                    b.HasOne("StoreTemplateCore.Entities.Index", "Index")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId");
                 });

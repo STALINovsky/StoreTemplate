@@ -12,5 +12,12 @@ namespace Infrastructure.Specifications.CategorySpecifications
 
         public CategorySpecification(string name):base(category => category.Name.ToLower().Contains(name.ToLower())) { }
         public CategorySpecification(int id) : base(category => category.Id == id){ }
+
+        public ISpecification<Category> SortByName()
+        {
+            AddOrdering(category => category.Name);
+            return this;
+        }
+
     }
 }

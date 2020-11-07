@@ -6,18 +6,18 @@ using StoreTemplateCore.Entities.Base;
 
 namespace Infrastructure.Data.Repositories
 {
-    internal static class SpecificationEvaluator<T> where T : Entity
-    {
+    internal static class SpecificationEvaluator{
 
-        public static IQueryable<T> ApplySpecification(IQueryable<T> baseQuery, ISpecification<T> specification)
+        internal static IQueryable<T> ApplySpecification<T>(IQueryable<T> baseQuery, ISpecification<T> specification) where T : Entity
 		{
 			var query = baseQuery;
 
 			//filter by Criteria
 			if (specification.Criteria != null) query = query.Where(specification.Criteria);
 			
-            //
-            query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
+            //including fields
+            query = specification.Includes.Aggregate
+                (query, (current, include) => current.Include(include));
 
             specification.IncludeStrings.Aggregate(query,
 				(current, include) => current.Include(include));

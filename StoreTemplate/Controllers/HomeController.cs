@@ -8,19 +8,18 @@ using Infrastructure.Data.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories.Base;
 using Infrastructure.Specifications.ProductSpecifications;
-using Infrastructure.Specifications.ProductSpecifications.Extensions;
 using Microsoft.EntityFrameworkCore;
-using StoreTemplateCore.Entities;
 using Infrastructure.Specifications.Base;
-using Infrastructure.Specifications.Base.Extensions;
+using Microsoft.AspNetCore.Identity;
+using StoreTemplateCore.Identity;
 
 namespace StoreTemplate.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> Logger;
-        private readonly IProductRepository ProductRepository;
-        private const int TopProductCount = 3;
+        readonly ILogger<HomeController> Logger;
+        readonly IProductRepository ProductRepository;
+        const int TopProductCount = 3;
 
         public HomeController(ILogger<HomeController> logger, IProductRepository productRepository)
         {
@@ -30,12 +29,16 @@ namespace StoreTemplate.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var spec = new ProductSpecification().IncludeTags().AddSortingByStars().AddPagination(TopProductCount);
+            var spec = new ProductSpecification().IncludeTags().SortByPopularity().AddPagination(TopProductCount);
             var products = await ProductRepository.GetAsync(spec);
             
             return View(products);
         }
 
+        public IActionResult Contacts()
+        {
+            throw new NotImplementedException();
+        }
 
         public IActionResult Privacy()
         {

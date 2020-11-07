@@ -13,13 +13,8 @@ namespace Infrastructure.Specifications.Base
         List<Expression<Func<T, object>>> OrderByExpressions { get; }
         List<Expression<Func<T, object>>> OrderByDescendingExpressions { get; }
 
-        public int Take { get; set; }
-        public int Skip { get; set; }
-
-        public void AddOrdering(Expression<Func<T, object>> expression);
-        public void AddDescendingOrdering(Expression<Func<T, object>> expression);
-        public void AddInclude(Expression<Func<T, object>> includeExpression);
-        public void AddInclude(string includeString);
+        int Take { get; set; }
+        int Skip { get; set; }
 
     }
 }

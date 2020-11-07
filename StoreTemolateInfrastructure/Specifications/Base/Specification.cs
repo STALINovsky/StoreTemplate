@@ -24,27 +24,36 @@ namespace Infrastructure.Specifications.Base
         public List<Expression<Func<T, object>>> OrderByExpressions { get; private set; } = new List<Expression<Func<T, object>>>();
         public List<Expression<Func<T, object>>> OrderByDescendingExpressions { get; private set; } = new List<Expression<Func<T, object>>>();
 
+        public ISpecification<T> AddPagination(int take = 0, int skip = 0)
+        {
+            Take = take;
+            Skip = skip;
+
+            return this;
+        }
+
         public int Skip { get; set; }
         public int Take { get; set; }
 
-        public void AddOrdering(Expression<Func<T, object>> expression)
+        protected void AddOrdering(Expression<Func<T, object>> expression)
         {
             OrderByExpressions.Add(expression);
         }
 
-        public void AddDescendingOrdering(Expression<Func<T, object>> expression)
+        protected void AddDescendingOrdering(Expression<Func<T, object>> expression)
         {
             OrderByDescendingExpressions.Add(expression);
         }
 
-        public void AddInclude(Expression<Func<T, object>> includeExpression)
+        protected void AddInclude(Expression<Func<T, object>> includeExpression)
         {
             Includes.Add(includeExpression);
         }
 
-        public void AddInclude(string includeString)
+        protected void AddInclude(string includeString)
         {
             IncludeStrings.Add(includeString);
         }
+
     }
 }
