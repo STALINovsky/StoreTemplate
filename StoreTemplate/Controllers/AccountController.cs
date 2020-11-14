@@ -90,7 +90,7 @@ namespace StoreTemplate.Controllers
             returnUrl ??= "~/";
 
             await SignInManager.SignOutAsync();
-            return LocalRedirect("~/");
+            return LocalRedirect(returnUrl);
         }
 
     }

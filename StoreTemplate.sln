@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "StoreTemo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreTemplate", "StoreTemplate\StoreTemplate.csproj", "{3C3913D3-DB43-4F28-93E3-B1AED1C320A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{0AF140FC-6C72-4E2F-BC83-6AB602C3F9FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3C3913D3-DB43-4F28-93E3-B1AED1C320A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C3913D3-DB43-4F28-93E3-B1AED1C320A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C3913D3-DB43-4F28-93E3-B1AED1C320A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF140FC-6C72-4E2F-BC83-6AB602C3F9FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF140FC-6C72-4E2F-BC83-6AB602C3F9FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF140FC-6C72-4E2F-BC83-6AB602C3F9FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF140FC-6C72-4E2F-BC83-6AB602C3F9FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

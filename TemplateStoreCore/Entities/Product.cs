@@ -14,7 +14,7 @@ namespace StoreTemplateCore.Entities
         public decimal Price { get; set; }
         public int? UnitsInStock { get; set; }
 
-        public double? Stars { get; set; }
+        public double Stars { get; set; }
 
         // n - 1 relationship
         public int? CategoryId { get; set; }
@@ -23,6 +23,5 @@ namespace StoreTemplateCore.Entities
 
         // 1 - n relationship
         public List<Tag> Tags { get; set; }
-
     }
 }

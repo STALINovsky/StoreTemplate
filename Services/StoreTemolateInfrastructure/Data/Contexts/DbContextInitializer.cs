@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using StoreTemplate.Constants;
 using StoreTemplateCore.Entities;
 using StoreTemplateCore.Entities.Base;
-using StoreTemplateCore.Identity;
+using StoreTemplateCore.Model.Identity;
+
 
 namespace Infrastructure.Data.Contexts
 {
@@ -18,9 +20,9 @@ namespace Infrastructure.Data.Contexts
         {
             try
             {
+                await SeedTagsAsync(context);
                 await SeedCategoriesAsync(context);
                 await SeedProductsAsync(context);
-
             }
             catch (Exception exception)
             {
@@ -70,8 +72,6 @@ namespace Infrastructure.Data.Contexts
 
         private static async Task SeedProductsAsync(DbContext context)
         {
-
-            var tags = await context.Set<Tag>().ToArrayAsync();
             var products = new Product[]
             {
                 new Product {

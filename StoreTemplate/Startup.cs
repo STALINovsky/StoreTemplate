@@ -58,8 +58,12 @@ namespace StoreTemplate
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                        name: "areas",
+                        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                       name: "default",
+                       pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
 
@@ -68,13 +72,13 @@ namespace StoreTemplate
 
             string connectionString = Configuration.GetConnectionString("StoreDb");
             services.AddDbContext<StoreDbContext>(
-                options => options.UseSqlServer(connectionString, 
-                    x=> x.MigrationsAssembly("StoreTemplate")));
+                options => options.UseSqlServer(connectionString,
+                    x => x.MigrationsAssembly("StoreTemplate")));
         }
 
-        private void ConfigureIdentity(IServiceCollection services)
+        private static void ConfigureIdentity(IServiceCollection services)
         {
-            services.AddIdentity<User,IdentityRole>()
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<StoreDbContext>()
                 .AddDefaultTokenProviders();
 

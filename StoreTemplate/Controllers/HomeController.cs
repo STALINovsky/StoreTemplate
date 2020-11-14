@@ -11,20 +11,17 @@ using Infrastructure.Specifications.ProductSpecifications;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Specifications.Base;
 using Microsoft.AspNetCore.Identity;
-using StoreTemplateCore.Identity;
 
 namespace StoreTemplate.Controllers
 {
     public class HomeController : Controller
     {
-        readonly ILogger<HomeController> Logger;
         readonly IProductRepository ProductRepository;
         const int TopProductCount = 3;
 
-        public HomeController(ILogger<HomeController> logger, IProductRepository productRepository)
+        public HomeController(IProductRepository productRepository)
         {
             this.ProductRepository = productRepository;
-            Logger = logger;
         }
 
         public async Task<IActionResult> Index()

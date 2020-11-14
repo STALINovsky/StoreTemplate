@@ -24,12 +24,11 @@ namespace Infrastructure.Specifications.Base
         public List<Expression<Func<T, object>>> OrderByExpressions { get; private set; } = new List<Expression<Func<T, object>>>();
         public List<Expression<Func<T, object>>> OrderByDescendingExpressions { get; private set; } = new List<Expression<Func<T, object>>>();
 
-        public ISpecification<T> AddPagination(int pageCount, int page = 1)
+        public ISpecification<T> AddPagination(int pageCount,int page = 1)
         {
-            int entitesToSkip = pageCount * (page - 1);
+            int entitiesToSkip = pageCount * (page - 1);
             Take = pageCount;
-            Skip = entitesToSkip;
-
+            Skip = entitiesToSkip;
             return this;
         }
 

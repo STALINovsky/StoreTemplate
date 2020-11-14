@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.Data.Repositories.Base;
-using Infrastructure.Specifications.CategorySpecifications;
+using Infrastructure.Specifications;
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.Specifications.Base;
-
+using Infrastructure.Specifications.CategorySpecifications;
 
 namespace StoreTemplate.Components
 {
