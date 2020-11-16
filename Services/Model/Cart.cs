@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using StoreTemplateCore.Entities;
-using StoreTemplateCore.Entities.Base;
 using StoreTemplateCore.Model;
 
-namespace StoreTemplateCore.Model
+namespace Services.Model
 {
     public class Cart
     {

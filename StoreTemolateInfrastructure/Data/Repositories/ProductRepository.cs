@@ -25,7 +25,7 @@ namespace Infrastructure.Data.Repositories
             return (await GetAsync(spec)).FirstOrDefault();
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductByNameAsync(string name)
+        public async Task<IReadOnlyList<Product>> GetProductsByNameAsync(string name)
         {
             var spec = new ProductSpecification(name);
             return await GetAsync(spec);

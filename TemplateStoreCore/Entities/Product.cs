@@ -23,5 +23,7 @@ namespace StoreTemplateCore.Entities
 
         // 1 - n relationship
         public List<Tag> Tags { get; set; }
+
+        public const int MaxStarsCount = 5;
     }
 }

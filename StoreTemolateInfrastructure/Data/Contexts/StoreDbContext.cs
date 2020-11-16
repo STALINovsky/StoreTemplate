@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using StoreTemplateCore.Entities;
 using StoreTemplateCore.Identity;
+using System.Linq;
 
 namespace Infrastructure.Data.Contexts
 {
@@ -15,5 +16,6 @@ namespace Infrastructure.Data.Contexts
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<News> News { get; set; }
     }
 }

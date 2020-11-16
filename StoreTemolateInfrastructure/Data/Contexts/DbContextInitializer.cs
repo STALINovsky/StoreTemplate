@@ -99,7 +99,7 @@ namespace Infrastructure.Data.Contexts
                     },
                 },
                 new Product {
-                    Name = "Macbook pro",
+                    Name = "MacBook pro",
                     CategoryId = 2,
                     Description = "Professional mac",
                     ImagePath = @"Images/Product/Mac-book.png",
@@ -111,7 +111,7 @@ namespace Infrastructure.Data.Contexts
                     },
                 },
                 new Product {
-                    Name = "Macbook pro 2",
+                    Name = "MacBook pro 2",
                     CategoryId = 2,
                     Description = "Professional mac",
                     Price = 1999.99m,

@@ -550,7 +550,7 @@ var i,
 	matches,
 	contains,
 
-	// Instance-specific data
+	// instance-specific data
 	expando = "sizzle" + 1 * new Date(),
 	preferredDoc = window.document,
 	dirruns = 0,
@@ -566,7 +566,7 @@ var i,
 		return 0;
 	},
 
-	// Instance methods
+	// instance methods
 	hasOwn = ( {} ).hasOwnProperty,
 	arr = [],
 	pop = arr.pop,

@@ -1,14 +1,15 @@
 ﻿namespace Model {
     export class Product {
-        Name: string
-        Price: number
-        ImagePath: string
-        Count: number
+        id: number;
+        name: string;
+        price: number;
+        imagePath: string;
+        count: number;
 
         constructor(name: string, price: number, imagePath: string) {
-            this.Name = name;
-            this.Price = price;
-            this.ImagePath = imagePath;
+            this.name = name;
+            this.price = price;
+            this.imagePath = imagePath;
         }
     }
 }

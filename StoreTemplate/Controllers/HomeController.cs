@@ -17,13 +17,13 @@ namespace StoreTemplate.Controllers
     public class HomeController : Controller
     {
         readonly IProductRepository ProductRepository;
-        const int TopProductCount = 3;
+        const int TopProductCount = 9;
 
         public HomeController(IProductRepository productRepository)
         {
             this.ProductRepository = productRepository;
         }
-
+        
         public async Task<IActionResult> Index()
         {
             var spec = new ProductSpecification().IncludeTags().SortByPopularity().AddPagination(TopProductCount);
