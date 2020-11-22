@@ -25,6 +25,12 @@ namespace Infrastructure.Data.Repositories
             return (await GetAsync(spec)).FirstOrDefault();
         }
 
+        public async Task<IReadOnlyList<Product>> GetProductsByIds(IEnumerable<int> iDs)
+        {
+            var spec = new ProductSpecification(prod => iDs.Contains(prod.Id));
+            return (await GetAsync(spec));
+        }
+
         public async Task<IReadOnlyList<Product>> GetProductsByNameAsync(string name)
         {
             var spec = new ProductSpecification(name);

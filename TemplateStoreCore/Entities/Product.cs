@@ -6,7 +6,7 @@ namespace StoreTemplateCore.Entities
 {
     public class Product : Entity
     {
-        [Required(ErrorMessage = "Please Enter Name")]
+        [Required(ErrorMessage = "Please Enter Product")]
         public string Name { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }

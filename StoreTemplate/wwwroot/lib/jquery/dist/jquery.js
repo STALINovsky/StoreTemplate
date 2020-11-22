@@ -550,7 +550,7 @@ var i,
 	matches,
 	contains,
 
-	// instance-specific data
+	// Instance-specific data
 	expando = "sizzle" + 1 * new Date(),
 	preferredDoc = window.document,
 	dirruns = 0,

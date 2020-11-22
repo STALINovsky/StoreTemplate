@@ -16,18 +16,19 @@ namespace StoreTemplate.Controllers
 {
     public class HomeController : Controller
     {
-        readonly IProductRepository ProductRepository;
-        const int TopProductCount = 9;
+        private readonly IProductRepository productRepository;
+        private const int TopProductCount = 9;
 
-        public HomeController(IProductRepository productRepository)
+        public HomeController(IProductRepository productRepository) : base()
         {
-            this.ProductRepository = productRepository;
+            var context = this.HttpContext;
+            this.productRepository = productRepository;
         }
         
         public async Task<IActionResult> Index()
         {
             var spec = new ProductSpecification().IncludeTags().SortByPopularity().AddPagination(TopProductCount);
-            var products = await ProductRepository.GetAsync(spec);
+            var products = await productRepository.GetAsync(spec);
             
             return View(products);
         }

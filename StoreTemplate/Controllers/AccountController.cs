@@ -20,7 +20,7 @@ namespace StoreTemplate.Controllers
         public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
         {
             SignInManager = signInManager;
-            UserManager = userManager;
+            UserManager = userManager;  
         }
 
         [HttpGet]
@@ -42,7 +42,7 @@ namespace StoreTemplate.Controllers
 
             if (user != null)
             {
-                ModelState.AddModelError("", "this Name has already taken");
+                ModelState.AddModelError("", "this Product has already taken");
                 return View(userModel);
             }
 

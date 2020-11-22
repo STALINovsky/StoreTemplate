@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Services.Services;
+using Services.Services.Interfaces;
 using StoreTemplateCore.Identity;
 
 
@@ -33,6 +35,9 @@ namespace StoreTemplate
 
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+
+            services.AddHttpContextAccessor();
+            services.AddTransient<ICartService, CookieCartServiceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -30,7 +30,7 @@ namespace StoreTemplate.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Product")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -141,13 +141,13 @@ namespace StoreTemplate.Migrations
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Product")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                    b.HasKey("UserId", "LoginProvider", "Product");
 
                     b.ToTable("AspNetUserTokens");
                 });
@@ -165,7 +165,7 @@ namespace StoreTemplate.Migrations
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Product")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -189,7 +189,7 @@ namespace StoreTemplate.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Product")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -219,7 +219,7 @@ namespace StoreTemplate.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Product")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ProductId")
