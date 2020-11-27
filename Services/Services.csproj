@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Extencions\**" />
+    <EmbeddedResource Remove="Extencions\**" />
+    <None Remove="Extencions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.0" />
     <PackageReference Include="System.Text.Json" Version="5.0.0" />
@@ -13,10 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\StoreTemolateInfrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\TemplateStoreCore\StoreTemplateCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Extencions\" />
   </ItemGroup>
 
 </Project>

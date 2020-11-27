@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/Site.css" />
     @*for system.js*@
-    <base href="~/"/>
+    <base href="~/" />
 </head>
 
 <body>
@@ -57,17 +57,11 @@
         </div>
     </footer>
 
-    @if (IsSectionDefined("Scripts"))
-    {
-        @await RenderSectionAsync("Scripts", required: false)
-    }
-    else
-    {
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.0/system.js"></script>
-        <script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.0/system.js"></script>
+    <script>
             SystemJS.config({
                 baseURL: "js",
                 packages: {
@@ -75,8 +69,8 @@
                 }
             });
             System.import('@ViewData["TsModule"]');
-        </script>
-    }
+    </script>
+
 
 </body>
 </html>
