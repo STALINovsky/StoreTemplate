@@ -40,7 +40,7 @@ namespace StoreTemplate
             var dbContext = serviceProvider.GetRequiredService<StoreDbContext>();
             await DbContextInitializer.TryInitEntities(dbContext, loggerFactory.CreateLogger("DbInitialization"));
 
-            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            var configuration = serviceProvider.GetRequiredService<IConfiguration>();       
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 

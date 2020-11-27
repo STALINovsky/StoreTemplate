@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-using Infrastructure.Data;
 using Infrastructure.Data.Contexts;
 using Infrastructure.Data.Repositories;
 using Infrastructure.Data.Repositories.Base;

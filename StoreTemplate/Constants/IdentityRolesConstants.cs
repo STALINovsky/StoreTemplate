@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace StoreTemplate.Constants
 {
-    public static class IdentityRoleConstants
+    public static class IdentityRolesConstants
     {
         public const string AdminRoleName = "Admin";
         public const string ManagerRoleName = "Manager";
