@@ -26,25 +26,25 @@ System.register(["../Extensions/CookieExtensions", "../Model/CartLine", "../View
                     for (var i = 0; i < productCardComponents.length; i++) {
                         var current = productCardComponents[i];
                         current.addEventHandlerToCardAdd(function (target) {
-                            var productId = target.id;
+                            var productName = target.name;
                             var cart = CartComponent.getInstance();
-                            cart.addProducts(productId);
+                            cart.addProducts(productName);
                         });
                     }
                     for (var i = 0; i < cartLineComponents.length; i++) {
                         var current = cartLineComponents[i];
                         //add cartLine remove
                         current.addHandlerToCartLineRemove(function (target) {
-                            var productId = target.id;
+                            var productName = target.name;
                             var cart = CartComponent.getInstance();
-                            cart.removeProducts(productId);
+                            cart.removeProducts(productName);
                         });
                         //add cartLine changeCount
                         current.addHandlerToCartLineCountChange(function (target) {
-                            var productId = target.id;
+                            var productName = target.name;
                             var productCount = target.count;
                             var cart = CartComponent.getInstance();
-                            cart.setProductCount(productId, productCount);
+                            cart.setProductCount(productName, productCount);
                         });
                     }
                 }
@@ -70,20 +70,20 @@ System.register(["../Extensions/CookieExtensions", "../Model/CartLine", "../View
                         }
                     }
                 };
-                CartComponent.prototype.getCartLineByProductIdOrDefault = function (productId) {
+                CartComponent.prototype.getCartLineByProductNameOrDefault = function (name) {
                     for (var i = 0; i < this.cartLines.length; i++) {
                         var currentLine = this.cartLines[i];
-                        if (currentLine.ProductId === productId) {
+                        if (currentLine.Name === name) {
                             return currentLine;
                         }
                     }
                     return null;
                 };
-                CartComponent.prototype.addProducts = function (productId, addedCount) {
+                CartComponent.prototype.addProducts = function (name, addedCount) {
                     if (addedCount === void 0) { addedCount = 1; }
-                    var cartLine = this.getCartLineByProductIdOrDefault(productId);
+                    var cartLine = this.getCartLineByProductNameOrDefault(name);
                     if (cartLine == null) {
-                        cartLine = new CartLine_1.CartLine(productId, addedCount);
+                        cartLine = new CartLine_1.CartLine(name, addedCount);
                         this.cartLines.push(cartLine);
                     }
                     else {
@@ -92,10 +92,10 @@ System.register(["../Extensions/CookieExtensions", "../Model/CartLine", "../View
                     this.callEvents(this.addProductEventHandlers, cartLine);
                     this.saveChanges();
                 };
-                CartComponent.prototype.setProductCount = function (productId, count) {
-                    var cartLine = this.getCartLineByProductIdOrDefault(productId);
+                CartComponent.prototype.setProductCount = function (name, count) {
+                    var cartLine = this.getCartLineByProductNameOrDefault(name);
                     if (cartLine == null) {
-                        cartLine = new CartLine_1.CartLine(productId, count);
+                        cartLine = new CartLine_1.CartLine(name, count);
                         this.cartLines.push(cartLine);
                     }
                     else {
@@ -103,8 +103,8 @@ System.register(["../Extensions/CookieExtensions", "../Model/CartLine", "../View
                     }
                     this.saveChanges();
                 };
-                CartComponent.prototype.removeProducts = function (productId) {
-                    var cartLine = this.getCartLineByProductIdOrDefault(productId);
+                CartComponent.prototype.removeProducts = function (productName) {
+                    var cartLine = this.getCartLineByProductNameOrDefault(productName);
                     var cartLineIndex = this.cartLines.indexOf(cartLine);
                     this.cartLines.splice(cartLineIndex, 1);
                     this.callEvents(this.removeProductEventHandlers, cartLine);

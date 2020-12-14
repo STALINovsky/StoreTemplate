@@ -16,7 +16,6 @@ namespace StoreTemplate.ViewModels.Identity
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [BindNever]
         public string ReturnUrl { get; set; }
     }
 }

@@ -1,4 +1,8 @@
-﻿.product-card{
+﻿.main {
+    min-height: 1000px;
+}
+
+.product-card{
 
 }
 
@@ -6,7 +10,7 @@
 
 }
 
-.product-card-name{
+.product-name{
 
 }
 

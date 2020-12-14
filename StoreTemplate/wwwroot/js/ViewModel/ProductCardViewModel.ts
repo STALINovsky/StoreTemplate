@@ -2,7 +2,7 @@
     //selectors
     private static readonly productCardSelector = "div.product-card";
     private static readonly productCardAddButtonSelector = "button.product-card-add-btn";
-    private static readonly productCardIdSelector = "label.product-id";
+    private static readonly productCardNameSelector = ".product-name";
     //static fields
     private static addButtonEventType = "click";
 
@@ -31,10 +31,9 @@
         addButton.addEventListener(ProductCardViewModel.addButtonEventType, () => { eventHandler(this); });
     }
 
-    public get id(): number {
-        let productId: number = +this.productCardElement.
-            querySelector(ProductCardViewModel.productCardIdSelector).textContent;
-        return productId;
+    public get name(): string {
+        let nameItem = this.productCardElement.querySelector(ProductCardViewModel.productCardNameSelector);
+        let productName: string = nameItem.textContent;
+        return productName;
     }
-
 }

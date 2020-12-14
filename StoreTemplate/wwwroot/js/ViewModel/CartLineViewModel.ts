@@ -1,10 +1,10 @@
 ﻿export class CartLineViewModel {
     //selectors
     private static readonly cartLineSelector = "div.cart-line";
-    private static readonly idSelector = "input.product-id";
-    private static readonly removeButtonSelector = "button.cart-line-delete";
-    private static readonly productPriceSelector = "strong.product-price";
-    private static readonly productCountSelector = "input.product-count";
+    private static readonly removeButtonSelector = ".cart-line-delete";
+    private static readonly productPriceSelector = ".product-price";
+    private static readonly productCountSelector = ".product-count";
+    private static readonly productNameSelector = ".product-name";
     //static fields 
     private static readonly  removeButtonEventType = "click";
     private static readonly  countInputEventType = "change";
@@ -50,11 +50,10 @@
             () => { eventHandler(this); });
     }
 
-    public get id(): number {
-        let productIdInput = this.cartLineElement.querySelector
-            (CartLineViewModel.idSelector) as HTMLInputElement;
-        let productId = + productIdInput.value;
-        return productId;
+    public get name(): string {
+        let productNameSelector = this.cartLineElement.querySelector(CartLineViewModel.productNameSelector);
+        let productName = productNameSelector.textContent;
+        return productName;
     }
 
     public get price(): number {

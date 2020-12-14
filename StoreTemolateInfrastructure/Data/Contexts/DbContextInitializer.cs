@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Constants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
-using StoreTemplate.Constants;
 using StoreTemplateCore.Entities;
 using StoreTemplateCore.Entities.Base;
 using StoreTemplateCore.Identity;

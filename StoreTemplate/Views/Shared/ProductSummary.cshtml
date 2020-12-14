@@ -2,11 +2,10 @@
 
 <div class="col-lg-4 col-md-6 mb-4 my-3">
     <div class="product-card card h-100">
-        <a href="#"><img class="card-img-top" src="~/@Model.ImagePath" alt=""></a>
+        <a asp-controller="Products" asp-action="Index" asp-route-productName ="@Model.Name"><img class="card-img-top" src="~/@Model.ImagePath"></a>
         <div class="card-body">
-            <label class="product-id" asp-for="Id" hidden>@Model.Id</label>
             <h4 class="card-title">
-                <a href="#" class="product-card-name">@Model.Name</a>
+                <a asp-controller="Products" asp-action="Index" asp-route-productName ="@Model.Name" class="product-name">@Model.Name</a>
             </h4>
             <div class="d-flex justify-content-start">
                 <strong>$</strong>

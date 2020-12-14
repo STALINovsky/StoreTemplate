@@ -21,10 +21,10 @@ export class CartComponent {
         for (let i = 0; i < productCardComponents.length; i++) {
             let current = productCardComponents[i];
             current.addEventHandlerToCardAdd((target: ProductCardViewModel) => {
-                let productId = target.id;
+                let productName = target.name;
 
                 let cart = CartComponent.getInstance();
-                cart.addProducts(productId);
+                cart.addProducts(productName);
             });
         }
 
@@ -32,18 +32,18 @@ export class CartComponent {
             let current = cartLineComponents[i];
             //add cartLine remove
             current.addHandlerToCartLineRemove((target: CartLineViewModel) => {
-                let productId = target.id;
+                let productName = target.name;
 
                 let cart = CartComponent.getInstance();
-                cart.removeProducts(productId);
+                cart.removeProducts(productName);
             });
             //add cartLine changeCount
             current.addHandlerToCartLineCountChange((target: CartLineViewModel) => {
-                let productId = target.id;
+                let productName = target.name;
                 let productCount = target.count;
 
                 let cart = CartComponent.getInstance();
-                cart.setProductCount(productId, productCount);
+                cart.setProductCount(productName, productCount);
             });
         }
 
@@ -79,21 +79,21 @@ export class CartComponent {
         }
     }
 
-    private getCartLineByProductIdOrDefault(productId: number): CartLine | null {
+    private getCartLineByProductNameOrDefault(name: string): CartLine | null {
         for (let i = 0; i < this.cartLines.length; i++) {
             let currentLine = this.cartLines[i];
-            if (currentLine.ProductId === productId) {
+            if (currentLine.Name === name) {
                 return currentLine;
             }
         }
         return null;
     }
 
-    addProducts(productId: ProductId, addedCount: number = 1): void {
+    addProducts(name: string, addedCount: number = 1): void {
 
-        let cartLine = this.getCartLineByProductIdOrDefault(productId);
+        let cartLine = this.getCartLineByProductNameOrDefault(name);
         if (cartLine == null) {
-            cartLine = new CartLine(productId, addedCount);
+            cartLine = new CartLine(name, addedCount);
             this.cartLines.push(cartLine);
         } else {
             cartLine.Count += addedCount;
@@ -103,10 +103,10 @@ export class CartComponent {
         this.saveChanges();
     }
 
-    setProductCount(productId: ProductId, count: number) {
-        let cartLine = this.getCartLineByProductIdOrDefault(productId);
+    setProductCount(name: string, count: number) {
+        let cartLine = this.getCartLineByProductNameOrDefault(name);
         if (cartLine == null) {
-            cartLine = new CartLine(productId, count);
+            cartLine = new CartLine(name, count);
             this.cartLines.push(cartLine);
         } else {
             cartLine.Count = count;
@@ -115,8 +115,8 @@ export class CartComponent {
         this.saveChanges();
     }
 
-    removeProducts(productId: ProductId): void {
-        let cartLine = this.getCartLineByProductIdOrDefault(productId);
+    removeProducts(productName: string): void {
+        let cartLine = this.getCartLineByProductNameOrDefault(productName);
         let cartLineIndex = this.cartLines.indexOf(cartLine);
         this.cartLines.splice(cartLineIndex, 1);
 

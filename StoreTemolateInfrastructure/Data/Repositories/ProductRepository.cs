@@ -14,9 +14,21 @@ namespace Infrastructure.Data.Repositories
 {
     public sealed class ProductRepository : Repository<Product>, IProductRepository
     {
+        private new StoreDbContext Context => (StoreDbContext)base.Context;
+
         public ProductRepository(StoreDbContext context) : base(context)
         {
+            
+        }
 
+        public async Task<Product> GetProductByNameOrDefault(string name)
+        {
+            return await Context.Products.Where(prod => prod.Name.ToLower() == name.ToLower()).FirstOrDefaultAsync();
+        }
+
+        public async Task<IReadOnlyCollection<Product>> GetProductsByNames(IEnumerable<string> names)
+        {
+            return await Context.Products.Where(prod => names.Contains(prod.Name)).ToListAsync();
         }
 
         public async Task<Product> GetProductByIdWithCategoryAsync(int id)
@@ -31,11 +43,12 @@ namespace Infrastructure.Data.Repositories
             return (await GetAsync(spec));
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsByNameAsync(string name)
+        public async Task<IReadOnlyList<Product>> FindProductsByName(string name)
         {
             var spec = new ProductSpecification(name);
             return await GetAsync(spec);
         }
+
 
         public async Task<IReadOnlyList<Product>> GetProductListAsync(ISpecification<Product> specification)
         {

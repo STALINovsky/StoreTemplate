@@ -13,10 +13,10 @@ namespace Infrastructure.Data.Repositories.Base
     
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        protected DbContext Context { get; set; }
+        protected virtual DbContext Context { get; }
         private DbSet<T> EntitySet => Context.Set<T>();
 
-        public Repository(DbContext context)
+        protected Repository(DbContext context)
         {
             this.Context = context ?? throw new ArgumentNullException();
         }
@@ -47,6 +47,11 @@ namespace Infrastructure.Data.Repositories.Base
         public async Task<IReadOnlyCollection<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
             return await EntitySet.Where(predicate).ToListAsync();
+        }
+
+        public async Task<T> GetSingleOrDefaultAsync(ISpecification<T> specification)
+        {
+            return await ApplySpecification(specification).SingleOrDefaultAsync();
         }
 
         public async Task<IReadOnlyCollection<T>> GetAsync(Expression<Func<T, bool>> predicate , Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
@@ -81,7 +86,9 @@ namespace Infrastructure.Data.Repositories.Base
 
         public async Task UpdateAsync(T entity)
         {
-            Context.Entry(entity).State = EntityState.Modified;
+            //ToDo:Fix this problem
+            T exist =  await Context.Set<T>().FindAsync(entity.Id);
+            Context.Entry(exist).CurrentValues.SetValues(entity);
             await Context.SaveChangesAsync();
         }
     }

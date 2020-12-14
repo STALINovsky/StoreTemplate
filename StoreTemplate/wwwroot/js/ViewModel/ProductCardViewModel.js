@@ -23,11 +23,11 @@ System.register([], function (exports_1, context_1) {
                     var addButton = this.productCardElement.querySelector(ProductCardViewModel.productCardAddButtonSelector);
                     addButton.addEventListener(ProductCardViewModel.addButtonEventType, function () { eventHandler(_this); });
                 };
-                Object.defineProperty(ProductCardViewModel.prototype, "id", {
+                Object.defineProperty(ProductCardViewModel.prototype, "name", {
                     get: function () {
-                        var productId = +this.productCardElement.
-                            querySelector(ProductCardViewModel.productCardIdSelector).textContent;
-                        return productId;
+                        var nameItem = this.productCardElement.querySelector(ProductCardViewModel.productCardNameSelector);
+                        var productName = nameItem.textContent;
+                        return productName;
                     },
                     enumerable: false,
                     configurable: true
@@ -35,7 +35,7 @@ System.register([], function (exports_1, context_1) {
                 //selectors
                 ProductCardViewModel.productCardSelector = "div.product-card";
                 ProductCardViewModel.productCardAddButtonSelector = "button.product-card-add-btn";
-                ProductCardViewModel.productCardIdSelector = "label.product-id";
+                ProductCardViewModel.productCardNameSelector = ".product-name";
                 //static fields
                 ProductCardViewModel.addButtonEventType = "click";
                 return ProductCardViewModel;

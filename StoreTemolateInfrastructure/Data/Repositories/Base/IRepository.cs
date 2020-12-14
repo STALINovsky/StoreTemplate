@@ -11,9 +11,11 @@ namespace Infrastructure.Data.Repositories.Base
     public interface IRepository<T> where T : Entity
     {
         Task<IReadOnlyCollection<T>> GetAllAsync();
+
         Task<IReadOnlyCollection<T>> GetAsync(Expression<Func<T,bool>> predicate);
         Task<IReadOnlyCollection<T>> GetAsync(Expression<Func<T,bool>> predicate = null, Func<IQueryable<T>,IOrderedQueryable<T>> orderBy = null);
         public Task<IReadOnlyList<T>> GetAsync(ISpecification<T> specification);
+        public Task<T> GetSingleOrDefaultAsync(ISpecification<T> specification);
 
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);

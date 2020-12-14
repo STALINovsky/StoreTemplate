@@ -21,7 +21,7 @@ namespace Services.Services
         
         private class CookieCartLine
         {
-            public int ProductId { get; set; }
+            public string Name { get; set; }
             public int Count { get; set; }
         }
 
@@ -34,8 +34,8 @@ namespace Services.Services
         public async Task<Cart> GetCartAsync()
         {
             var cartLines = GetCookieCartLines();
-            var productIds = cartLines.Select(cartLine => cartLine.ProductId).ToList();
-            var products = await productRepository.GetProductsByIds(productIds);
+            var productNames = cartLines.Select(cartLine => cartLine.Name).ToList();
+            var products = await productRepository.GetProductsByNames(productNames);
 
             var cartItems = products.Zip(cartLines,
                 (product, line) => new CartItem() {Product = product, Quantity = line.Count}).ToList();

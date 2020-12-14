@@ -11,7 +11,7 @@ namespace Infrastructure.Specifications.ProductSpecifications
 
         public ProductSpecification(int id) :this(product => product.Id == id) { }
 
-        public ProductSpecification(string name) : this(product => product.Name.ToLower().Contains(name.ToLower())) { }
+        public ProductSpecification(string name) : this(product => product.Name.ToLower() == (name.ToLower())) { }
 
         public ProductSpecification(Expression<Func<Product, bool>> expression) : base(expression) { }
 

@@ -1,0 +1,13 @@
+﻿@model Category
+
+<div class="col-lg-4 col-md-6 mb-4 my-3">
+    <div class="product-card card h-100">
+        <a asp-controller="Categories" asp-action="Index" asp-route-name="@Model.Name"><img class="card-img-top" src="~/@Model.ImagePath"></a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a asp-controller="Categories" asp-action="Index" asp-route-name="@Model.Name" class="product-name">@Model.Name</a>
+            </h4>
+            <p class="card-text">@Model.Description</p>
+        </div>
+    </div>
+</div>

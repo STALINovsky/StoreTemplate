@@ -7,10 +7,12 @@ namespace Infrastructure.Data.Repositories.Base
 {
     public interface IProductRepository : IRepository<Product>
     {
-        public Task<IReadOnlyList<Product>> GetProductListAsync(ISpecification<Product> specification);
-        public Task<IReadOnlyList<Product>> GetProductsByIds(IEnumerable<int> iDs);
-        public Task<IReadOnlyList<Product>> GetProductsByNameAsync(string name);
-        public Task<Product> GetProductByIdWithCategoryAsync(int id);
-        public Task<IReadOnlyList<Product>> GetProductsByCategoryId(int categoryId);
+        Task<IReadOnlyList<Product>> GetProductListAsync(ISpecification<Product> specification);
+        Task<IReadOnlyList<Product>> GetProductsByIds(IEnumerable<int> iDs);
+        Task<IReadOnlyList<Product>> FindProductsByName(string name);
+        Task<Product> GetProductByIdWithCategoryAsync(int id);
+        Task<IReadOnlyList<Product>> GetProductsByCategoryId(int categoryId);
+        Task<Product> GetProductByNameOrDefault(string name);
+        Task<IReadOnlyCollection<Product>> GetProductsByNames(IEnumerable<string> names);
     }
 }

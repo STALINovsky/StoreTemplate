@@ -6,8 +6,8 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             CartLine = /** @class */ (function () {
-                function CartLine(productId, count) {
-                    this.ProductId = productId;
+                function CartLine(name, count) {
+                    this.Name = name;
                     this.Count = count;
                 }
                 return CartLine;

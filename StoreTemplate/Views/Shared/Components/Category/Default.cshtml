@@ -6,6 +6,7 @@
     {
         <a class="dropdown-item" asp-controller="Category" asp-action="Index" asp-route-categoryName="@category.Name" >
             @category.Name
+            <img src="@category.ImagePath"/>
         </a>
     }
 </div>

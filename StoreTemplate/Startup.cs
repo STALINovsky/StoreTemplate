@@ -1,3 +1,4 @@
+using System;
 using Infrastructure.Data.Contexts;
 using Infrastructure.Data.Repositories;
 using Infrastructure.Data.Repositories.Base;
@@ -17,12 +18,14 @@ namespace StoreTemplate
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
-            Configuration = configuration;
+            this.configuration = configuration;
+            this.environment = environment;
         }
 
-        private IConfiguration Configuration { get; }
+        private readonly IConfiguration configuration;
+        private readonly IWebHostEnvironment environment;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -31,11 +34,9 @@ namespace StoreTemplate
             ConfigureIdentity(services);
             services.AddControllersWithViews();
 
-            services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
-
             services.AddHttpContextAccessor();
             services.AddTransient<ICartService, CookieCartServiceService>();
+            services.AddTransient((serviceProvider) => (IImageService)new DiskImageService(environment.WebRootPath));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,10 +74,14 @@ namespace StoreTemplate
         private void ConfigureDatabases(IServiceCollection services)
         {
 
-            string connectionString = Configuration.GetConnectionString("StoreDb");
+            string connectionString = configuration.GetConnectionString("StoreDb");
             services.AddDbContext<StoreDbContext>(
                 options => options.UseSqlServer(connectionString,
                     x => x.MigrationsAssembly("StoreTemplate")));
+
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+
         }
 
         private static void ConfigureIdentity(IServiceCollection services)

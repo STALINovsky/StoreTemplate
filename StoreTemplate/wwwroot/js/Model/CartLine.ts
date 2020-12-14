@@ -1,9 +1,9 @@
 ﻿export class CartLine {
-    public ProductId: number;
+    public Name: string;
     public Count: number;
 
-    constructor(productId: number, count: number) {
-        this.ProductId = productId;
+    constructor(name: string, count: number) {
+        this.Name = name;
         this.Count = count;
     }
 }

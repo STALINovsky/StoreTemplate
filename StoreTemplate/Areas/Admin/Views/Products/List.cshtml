@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Product>
+
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            @await Html.PartialAsync("AdminProductSummary", product);
+        }
+    </div>
+
+</div>

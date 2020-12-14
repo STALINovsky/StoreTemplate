@@ -32,11 +32,11 @@ System.register([], function (exports_1, context_1) {
                     var countInput = this.cartLineElement.querySelector(CartLineViewModel.productCountSelector);
                     countInput.addEventListener(CartLineViewModel.countInputEventType, function () { eventHandler(_this); });
                 };
-                Object.defineProperty(CartLineViewModel.prototype, "id", {
+                Object.defineProperty(CartLineViewModel.prototype, "name", {
                     get: function () {
-                        var productIdInput = this.cartLineElement.querySelector(CartLineViewModel.idSelector);
-                        var productId = +productIdInput.value;
-                        return productId;
+                        var productNameSelector = this.cartLineElement.querySelector(CartLineViewModel.productNameSelector);
+                        var productName = productNameSelector.textContent;
+                        return productName;
                     },
                     enumerable: false,
                     configurable: true
@@ -66,10 +66,10 @@ System.register([], function (exports_1, context_1) {
                 };
                 //selectors
                 CartLineViewModel.cartLineSelector = "div.cart-line";
-                CartLineViewModel.idSelector = "input.product-id";
-                CartLineViewModel.removeButtonSelector = "button.cart-line-delete";
-                CartLineViewModel.productPriceSelector = "strong.product-price";
-                CartLineViewModel.productCountSelector = "input.product-count";
+                CartLineViewModel.removeButtonSelector = ".cart-line-delete";
+                CartLineViewModel.productPriceSelector = ".product-price";
+                CartLineViewModel.productCountSelector = ".product-count";
+                CartLineViewModel.productNameSelector = ".product-name";
                 //static fields 
                 CartLineViewModel.removeButtonEventType = "click";
                 CartLineViewModel.countInputEventType = "change";

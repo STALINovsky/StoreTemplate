@@ -19,7 +19,7 @@ namespace Infrastructure.Data.Repositories
             query = specification.Includes.Aggregate
                 (query, (current, include) => current.Include(include));
 
-            specification.IncludeStrings.Aggregate(query,
+            query = specification.IncludeStrings.Aggregate(query,
 				(current, include) => current.Include(include));
 
 			// add Ordering

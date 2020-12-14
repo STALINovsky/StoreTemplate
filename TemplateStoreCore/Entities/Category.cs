@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using StoreTemplateCore.Entities.Base;
 
 namespace StoreTemplateCore.Entities
@@ -8,16 +9,18 @@ namespace StoreTemplateCore.Entities
         public Category()
         {
         }
-        public Category(string name, string description, string imageName)
+
+        public Category(string name, string description, string imagePath)
         {
             Name = name;
             Description = description;
-            ImageName = imageName;
+            ImagePath = imagePath;
         }
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ImageName { get; set; }
+        [Column("ImageName")]
+        public string ImagePath { get; set; }
         public List<Product> Products { get; set; }
 
     }

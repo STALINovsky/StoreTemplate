@@ -6,7 +6,6 @@ namespace StoreTemplateCore.Entities
 {
     public class Product : Entity
     {
-        [Required(ErrorMessage = "Please Enter Product")]
         public string Name { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }
@@ -19,11 +18,11 @@ namespace StoreTemplateCore.Entities
         // n - 1 relationship
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
+        public List<Review> Reviews { get; set; }
 
-
-        // 1 - n relationship
+        // n - n relationship
         public List<Tag> Tags { get; set; }
-
+        
         public const int MaxStarsCount = 5;
     }
 }

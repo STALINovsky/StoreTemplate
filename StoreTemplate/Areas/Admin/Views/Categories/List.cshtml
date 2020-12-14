@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Category>
+
+<div class="container">
+    <div class="row">
+        @foreach (var category in Model)
+        {
+            @await Html.PartialAsync("AdminCategorySummary",category)
+        }
+    </div>
+</div>

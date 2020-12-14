@@ -1,0 +1,42 @@
+﻿@model ProductViewModel
+
+<input type="hidden" asp-for="Id" />
+<div class="form-group">
+    <label asp-for="Name"></label>
+    <div><span class="text-danger" asp-validation-for="Name"></span></div>
+    <input class="form-control" asp-for="Name" />
+</div>
+<div class="form-group">
+    <label asp-for="Price"></label>
+    <div><span class="text-danger" asp-validation-for="Price"></span></div>
+    <input class="form-control" asp-for="Price" />
+</div>
+<div class="form-group">
+    <label asp-for="CategoryName"></label>
+    <div><span class="text-danger" asp-validation-for="CategoryName"></span></div>
+    <input class="form-control" asp-for="CategoryName" />
+</div>
+<div class="form-group">
+    <label asp-for="Description"></label>
+    <div><span class="text-danger" asp-validation-for="Description"></span></div>
+    <input class="form-control" asp-for="Description" />
+</div>
+<div class="form-group">
+    <label asp-for="Summary"></label>
+    <div><span class="text-danger" asp-validation-for="Summary"></span></div>
+    <input class="form-control" asp-for="Summary" />
+</div>
+
+<div class="form-group">
+    <label asp-for="UnitsInStock"></label>
+    <div><span class="text-danger" asp-validation-for="UnitsInStock"></span></div>
+    <input class="form-control" asp-for="UnitsInStock" />
+</div>
+
+<div class="form-control-file">
+    <label asp-for="Image"></label>
+    <div class="custom-file">
+        <input class="form-control custom-file-input" type="file" asp-for="Image" />
+        <label class="custom-file-label">Select Image...</label>
+    </div>
+</div>

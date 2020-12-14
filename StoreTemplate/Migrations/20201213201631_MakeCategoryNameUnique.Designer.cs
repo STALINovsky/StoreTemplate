@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace StoreTemplate.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20201115173916_addNews")]
-    partial class addNews
+    [Migration("20201213201631_MakeCategoryNameUnique")]
+    partial class MakeCategoryNameUnique
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace StoreTemplate.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Product")
+                    b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -141,15 +141,30 @@ namespace StoreTemplate.Migrations
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Product")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "LoginProvider", "Product");
+                    b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("ProductTag", b =>
+                {
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductsId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("ProductTag");
                 });
 
             modelBuilder.Entity("StoreTemplateCore.Entities.Category", b =>
@@ -162,13 +177,18 @@ namespace StoreTemplate.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ImageName");
 
-                    b.Property<string>("Product")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Categories");
                 });
@@ -189,7 +209,7 @@ namespace StoreTemplate.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Product")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
@@ -216,9 +236,9 @@ namespace StoreTemplate.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Product")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -236,7 +256,33 @@ namespace StoreTemplate.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("StoreTemplateCore.Entities.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("StoreTemplateCore.Entities.Tag", b =>
@@ -246,15 +292,10 @@ namespace StoreTemplate.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Product")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Tags");
                 });
@@ -375,6 +416,21 @@ namespace StoreTemplate.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProductTag", b =>
+                {
+                    b.HasOne("StoreTemplateCore.Entities.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StoreTemplateCore.Entities.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("StoreTemplateCore.Entities.Product", b =>
                 {
                     b.HasOne("StoreTemplateCore.Entities.Category", "Category")
@@ -384,10 +440,10 @@ namespace StoreTemplate.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("StoreTemplateCore.Entities.Tag", b =>
+            modelBuilder.Entity("StoreTemplateCore.Entities.Review", b =>
                 {
                     b.HasOne("StoreTemplateCore.Entities.Product", null)
-                        .WithMany("Tags")
+                        .WithMany("Reviews")
                         .HasForeignKey("ProductId");
                 });
 
@@ -398,7 +454,7 @@ namespace StoreTemplate.Migrations
 
             modelBuilder.Entity("StoreTemplateCore.Entities.Product", b =>
                 {
-                    b.Navigation("Tags");
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }
