@@ -5,8 +5,8 @@
     @foreach (var category in Model)
     {
         <a class="dropdown-item" asp-controller="Category" asp-action="Index" asp-route-categoryName="@category.Name" >
+            <img src="@category.ImagePath" />
             @category.Name
-            <img src="@category.ImagePath"/>
         </a>
     }
 </div>
