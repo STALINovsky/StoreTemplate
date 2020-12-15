@@ -17,7 +17,7 @@ namespace StoreTemplate.Areas.Admin.Controllers
     [Area(AreaNamesConstants.AdminAreaName)]
     public class CategoriesController : Controller
     {
-        private const int CategoriesCountPerPage = 10;
+        private const int CategoriesCountPerPage = 9;
         private readonly ICategoryRepository categoryRepository;
         private readonly IImageService imageService;
 

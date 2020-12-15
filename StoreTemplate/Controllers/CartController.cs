@@ -24,7 +24,6 @@ namespace StoreTemplate.Controllers
         public async Task<IActionResult> Index()
         {
             var cart = await CartService.GetCartAsync();
-
             return View(cart.Items);
         }
     }

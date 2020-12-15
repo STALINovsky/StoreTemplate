@@ -14,8 +14,8 @@ namespace StoreTemplate.Controllers
     [AllowAnonymous]
     public class AccountController : Controller
     {
-        public SignInManager<User> SignInManager { get; set; }
-        public UserManager<User> UserManager { get; set; }
+        private SignInManager<User> SignInManager { get; set; }
+        private UserManager<User> UserManager { get; set; }
 
         public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
         {

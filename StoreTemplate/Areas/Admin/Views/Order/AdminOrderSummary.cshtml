@@ -1,0 +1,17 @@
+﻿@model Order
+
+<div class="col-4">
+    <div class="card">
+        <div class="card-title d-flex justify-content-center">
+            <a asp-action="Index" asp-route-id="@Model.Id"><h4 >Order Number : @Model.Id</h4></a>
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-column">
+                <div>
+                    <span>Is checked</span>
+                    <input asp-for="IsActive" readonly="readonly"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -30,5 +30,9 @@ namespace Infrastructure.Data.Contexts
         public DbSet<Tag> Tags { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Review> Reviews { get; set; }
+
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderDetails> OrdersDetails { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

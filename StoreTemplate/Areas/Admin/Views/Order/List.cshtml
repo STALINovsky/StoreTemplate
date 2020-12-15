@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Order>
+
+<div class="container mt-3">
+    <div class="row">
+        @foreach (var order in Model)
+        {
+            @await Html.PartialAsync("AdminOrderSummary", order);
+        }
+    </div>
+</div>

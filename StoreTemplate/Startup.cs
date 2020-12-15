@@ -81,6 +81,7 @@ namespace StoreTemplate
 
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
         }
 
