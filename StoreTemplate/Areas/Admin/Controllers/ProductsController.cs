@@ -15,7 +15,6 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Services.Services.Interfaces;
 using StoreTemplate.Areas.Admin.Models;
-using StoreTemplate.Areas.Constants;
 using StoreTemplateCore.Entities;
 
 namespace StoreTemplate.Areas.Admin.Controllers

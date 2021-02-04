@@ -12,7 +12,6 @@ using StoreTemplateCore.Identity;
 
 namespace StoreTemplate.Controllers
 {
-    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderRepository orderRepository;

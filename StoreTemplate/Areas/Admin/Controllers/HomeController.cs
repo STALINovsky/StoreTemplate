@@ -1,7 +1,6 @@
 ﻿using Infrastructure.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using StoreTemplate.Areas.Constants;
 
 namespace StoreTemplate.Areas.Admin.Controllers
 {

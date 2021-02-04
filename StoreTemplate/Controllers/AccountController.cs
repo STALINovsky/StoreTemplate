@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +18,10 @@ namespace StoreTemplate.Controllers
         private SignInManager<User> SignInManager { get; set; }
         private UserManager<User> UserManager { get; set; }
 
-        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             SignInManager = signInManager;
-            UserManager = userManager;  
+            UserManager = userManager;
         }
 
         [HttpGet]
@@ -42,14 +43,15 @@ namespace StoreTemplate.Controllers
 
             if (user != null)
             {
-                ModelState.AddModelError("", "this Product has already taken");
+                ModelState.AddModelError("", "this name has already taken");
                 return View(userModel);
             }
 
             var newUser = new User() { UserName = userModel.Name, Email = userModel.EMail };
             await UserManager.CreateAsync(newUser, userModel.Password);
+            await UserManager.AddToRoleAsync(new User(), IdentityRoleConstants.VisitorRoleName);
 
-            return LocalRedirect(userModel.ReturnUrl);
+            return LocalRedirect(userModel.ReturnUrl ?? "~/");
         }
 
         [HttpGet]

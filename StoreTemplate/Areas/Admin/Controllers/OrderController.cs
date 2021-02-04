@@ -7,7 +7,6 @@ using Infrastructure.Constants;
 using Infrastructure.Data.Repositories.Base;
 using Infrastructure.Specifications.OrderSpecifications;
 using Microsoft.AspNetCore.Authorization;
-using StoreTemplate.Areas.Constants;
 using StoreTemplateCore.Entities;
 
 namespace StoreTemplate.Areas.Admin.Controllers

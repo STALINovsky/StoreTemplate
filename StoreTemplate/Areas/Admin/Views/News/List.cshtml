@@ -1,0 +1,10 @@
+﻿@model IEnumerable<News>
+
+<div class="container mt-3">
+    <div class="row">
+        @foreach (var news in Model)
+        {
+            @await Html.PartialAsync("NewsSummary", news);
+        }
+    </div>
+</div>

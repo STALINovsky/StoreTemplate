@@ -20,6 +20,7 @@ namespace Infrastructure.Data.Contexts
             {
                 await SeedCategoriesAsync(context);
                 await SeedProductsAsync(context);
+                await InitNewsAsync(context);
 
             }
             catch (Exception exception)
@@ -198,6 +199,22 @@ namespace Infrastructure.Data.Contexts
             await SeedAsync(context, products);
         }
 
+        public static async Task InitNewsAsync(DbContext context)
+        {
+            var news = new List<News>()
+            {
+                new News(){
+                    DateTime = DateTime.Now,
+                    Description = "",
+                    ImagePath = "/Images/News/Admin.png",
+                    Text = "",
+                    Name = "Admin",
+                }
+            };
+
+            await SeedAsync(context, news);
+        }
+
         public static async Task InitIdentity
             (UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
@@ -211,7 +228,7 @@ namespace Infrastructure.Data.Contexts
 
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {
-                var admin = new User() {Email = adminEmail, UserName = "Admin"};
+                var admin = new User() { Email = adminEmail, UserName = "Admin" };
                 var result = await userManager.CreateAsync(admin, adminPassword);
                 if (result.Succeeded)
                 {

@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Services.Interfaces;
 using StoreTemplate.Areas.Admin.Models;
-using StoreTemplate.Areas.Constants;
 using StoreTemplateCore.Entities;
 
 namespace StoreTemplate.Areas.Admin.Controllers

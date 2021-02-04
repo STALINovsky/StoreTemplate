@@ -1,4 +1,5 @@
 ﻿@{
+    ViewData["Title"] = "E-Shop Admin";
     ViewData["TsModule"] ??= "Components/CartComponent";
 }
 
@@ -7,7 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Store Template</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/Site.css" />
 </head>
@@ -44,6 +45,19 @@
                                 List
                             </a>
                             <a class="dropdown-item" asp-controller="Categories" asp-action="AddCategory">
+                                Add
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            News
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-controller="News" asp-action="List">
+                                List
+                            </a>
+                            <a class="dropdown-item" asp-controller="News" asp-action="AddNews">
                                 Add
                             </a>
                         </div>

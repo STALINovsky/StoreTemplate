@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Services.Services;
 using Services.Services.Interfaces;
 using StoreTemplateCore.Identity;
@@ -76,12 +77,17 @@ namespace StoreTemplate
 
             string connectionString = configuration.GetConnectionString("StoreDb");
             services.AddDbContext<StoreDbContext>(
-                options => options.UseSqlServer(connectionString,
-                    x => x.MigrationsAssembly("StoreTemplate")));
+                options =>
+                {
+                    options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+                    options.UseSqlServer(connectionString,
+                        x => x.MigrationsAssembly("StoreTemplate"));
+                });
 
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<INewsRepository, NewsRepository>();
 
         }
 
